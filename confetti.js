@@ -1,0 +1,57 @@
+// confetti.js
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const confettiParticles = [];
+
+function createConfetti() {
+    for (let i = 0; i < 150; i++) {
+        confettiParticles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            r: Math.random() * 6 + 4,
+            d: Math.random() * 100 + 50,
+            color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+            tilt: Math.random() * 10 - 10,
+            tiltAngleIncrement: Math.random() * 0.07 + 0.05
+        });
+    }
+}
+
+function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    confettiParticles.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.lineWidth = p.r / 2;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+        ctx.stroke();
+
+        p.tilt += p.tiltAngleIncrement;
+        p.y += Math.cos(p.d) + 2 + p.r / 2;
+
+        if (p.y > canvas.height) {
+            confettiParticles[i].y = -10;
+            confettiParticles[i].x = Math.random() * canvas.width;
+        }
+    });
+
+    requestAnimationFrame(drawConfetti);
+}
+
+// Trigger confetti immediately when page loads
+window.onload = () => {
+    createConfetti();
+    drawConfetti();
+
+    // Stop after 7 seconds
+    setTimeout(() => {
+        confettiParticles.length = 0;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }, 7000);
+};
