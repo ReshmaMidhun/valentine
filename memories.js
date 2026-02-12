@@ -16,3 +16,8 @@ function showSlides() {
         setTimeout(showSlides, 3000);  // continue only if slides remain
     }
 }
+const musicBtn = document.getElementById("musicBtn");
+
+musicBtn.addEventListener("click", () => {
+    music.play();
+});

@@ -1,7 +1,7 @@
 const noBtn = document.getElementById("noBtn");
 const buttonContainer = document.querySelector(".buttons");
 
-noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("mouseenter", moveButton);
 
 function moveButton() {
     const containerWidth = buttonContainer.offsetWidth;

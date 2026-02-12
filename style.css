@@ -21,8 +21,10 @@ h1 {
 .buttons {
     margin: 30px auto;
     position: relative;
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     height: 200px;   /* Important */
+    
 }
 
 button {
@@ -59,14 +61,14 @@ button {
 }
 /* Make responsive */
 @media (max-width: 600px) {
-    .container h1 {
-        font-size: 1.8rem;
+    h1 {
+        font-size: 2.8rem;
     }
     button {
-        padding: 10px 20px;
+        padding: 12px 25px;
         font-size: 16px;
     }
     .caption {
-        font-size: 14px;
+        font-size: 18px;
     }
 }
